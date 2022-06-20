@@ -12,9 +12,8 @@ def f(x,y):
     F = I
     C = 0.2
     V = 200
-    
+    return (C * I - F/V * y)
 
-    return x/y
 
 def rungeKutta(h, x0, y0):
     x = x0 + h
@@ -36,7 +35,7 @@ print(f"En {x}, y = {y[0]}")
 for i in range(1,N+1):
     y[i] = y[i-1] + h * f(x,y[i-1])
     x += h
-    print(f"En {x}, y = {y[i]}")
+print(f"En {x}, y = {y[i]}")
 
 
 ##Euler Mejorado
@@ -48,7 +47,7 @@ for i in range(1,N+1):
     yaux = y[i-1] + h * f(x,y[i-1])
     y[i] = y[i-1] + h/2 * (f(x,y[i-1]) + f(x+h,yaux))
     x += h
-    print(f"En {x}, y = {y[i]}")
+print(f"En {x}, y = {y[i]}")
 
 ## rungeKutta
 print("rungeKutta")
@@ -58,4 +57,4 @@ print(f"En {x}, y = {y[0]}")
 for i in range(1,N+1):
     y[i] = rungeKutta(h,x,y[i-1])
     x+=h
-    print(f"En {x}, y = {y[i]}")
+print(f"En {x}, y = {y[i]}")
