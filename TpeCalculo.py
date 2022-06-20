@@ -10,8 +10,8 @@ def f(x,y):
 
 yi=0
 xi=0
-xf=20
-N=20000
+xf=10000
+N=40000
 h=(xf-xi)/N
 y=np.zeros(shape=N+1)
 print(
@@ -27,7 +27,8 @@ f'''Condiciones iniciales:
     ''')
 
 print(f"h = {h}")
-print("Metodo de Euler")
+
+#print("Metodo de Euler")
 
 
 def rungeKutta(h, x0, y0):
@@ -42,7 +43,7 @@ def rungeKutta(h, x0, y0):
     return y
 
 
-
+'''
 ##Euler
 x=xi
 y[0] = yi
@@ -63,13 +64,26 @@ for i in range(1,N+1):
     y[i] = y[i-1] + h/2 * (f(x,y[i-1]) + f(x+h,yaux))
     x += h
 print(f"En {xf} y = {y[i]}")
-
+'''
 ## rungeKutta
-print("rungeKutta")
+##print("rungeKutta")
+tolerancia = 0.2
+asintotaHorizontal = 100
+
+print(f'''Sea la tolerancia = {tolerancia}
+y el valor asintotico = {asintotaHorizontal}''')
+
 x=xi
 y[0] = yi
 print(f"En {xi} y = {y[0]}")
+encontre = False
 for i in range(1,N+1):
-    y[i] = rungeKutta(h,x,y[i-1])
-    x+=h
-print(f"En {xf} y = {y[i]}")
+        y[i] = rungeKutta(h,x,y[i-1])
+        if abs(y[i] - asintotaHorizontal) < tolerancia :
+            if not encontre:
+                print(y[i] - asintotaHorizontal)
+                encontre = True
+                tPrima = x
+                print(f"se alcanza el un valor asintotico en t = {x}")
+
+        x+=h
