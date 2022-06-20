@@ -1,6 +1,6 @@
 import numpy as np
 
-yi=1
+yi=0
 xi=0
 xf=1
 N=10
